@@ -3,18 +3,22 @@
 body {
 	font-size: 12px;
 	font-family: Arial, Helvetica, sans-serif;
-	margin: 0px;
 	font-weight: normal;
+	margin: 0px;
+	padding: 5px 3px;
 }
 
+
 header {
-	padding: 5px 0px;
-	margin-bottom: 20px;
+	padding: 2px 0px;
+	margin-bottom: 3px;
 	height: 30px;
 	background-color: #545454;
 	color: #fff;
 	box-shadown: 0px 2px 2px #ccc;
 }
+
+
 
 header>div {
 	margin-left: 8px;
@@ -50,21 +54,27 @@ h1 {
 	padding: 10px;
 }
 
-.rotulo{
-	width:150px;
-	
+.rotulo {
+	width: 150px;
 }
 
-.painelGridCadastro{
+.painelGridCadastro {
 	margin-top: 20px;
-	width:100%;	
+	width: 100%;
 }
 
-.ui-panelgrid td{
+.ui-panelgrid td {
 	height: 34px;
 }
 
-.inputNumber >> input{
+.inputNumber input  {
 	text-align: rigth;
 }
 
+.ajaxStatus {
+	position: fixed;
+	top: 70px;
+	right: 10px;
+	width: 35px;
+	height: 35px;	
+}

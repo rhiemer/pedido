@@ -7,32 +7,65 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>#{empty titulo ? 'Sistema de Pedido de Venda' : titulo}</title>
-	<h:outputStylesheet library="css" name="sistemas.css" />
-</h:head>
 
-
-<h:body>
-	<header>
-	<div>
-		<h:link>
-			<h:graphicImage library="images" name="imagemcabecalho.png" />
-		</h:link>
-	</div>
-	</header>
-
-	<div id="conteudo">
-	    <h1 style="margin-bottom: 20px">#{empty titulo ? 'Sistema de Pedido de Venda' : titulo}</h1>
-		<ui:insert name="corpo" />
-	</div>
+<f:view contentType="text/html" locale="pt-br">
+    <pe:head title="#{empty titulo ? 'Sistema de Pedido de Venda' : titulo}">
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="pragma" content="no-cache"/>
+            <meta http-equiv="cache-control" content="no-cache"/>
+            <meta http-equiv="expires" content="0"/>
+	        <h:outputStylesheet library="css" name="sistemas.css" />
+  	        <h:outputScript library="js" name="jquery.maskMoney.js" />
+        </f:facet>
+    </pe:head>
+    
+    <h:body>
+        <pe:layout>
+            <pe:layoutPane position="north">
+                <header>
+					<div>
+					   <h:link>
+						 <h:graphicImage library="images" name="imagemcabecalho.png" />
+					  </h:link>
+				   </div>
+				</header>				                
+              </pe:layoutPane>
+              <pe:layoutPane position="center" styleHeader="top:5px">
+				<p:ajaxStatus>
+					<f:facet name="start">
+						<div
+							style="opacity: 0.4; position: absolute; bottom: 0; top: 0; left: 0; background-color: black; width: 100%; z-index: 5000">
+							<h:graphicImage library="images" name="loading.gif"
+								styleClass="ajaxStatus" />
+						</div>
+					</f:facet>
+					<f:facet name="complete">
+						<h:outputText value="" />
+					</f:facet>
+				</p:ajaxStatus>	
+				<div id="conteudo">
+			   	    <h1 style="margin-bottom: 1px">#{empty titulo ? 'Sistema de
+					 Pedido de Venda' : titulo}</h1>
+					<ui:insert name="corpo" />
+				</div>
+              </pe:layoutPane>
+              <pe:layoutPane position="south">
+					<footer> Curso OnLine de Sistemas Comerciais JavaEE com CDI,
+					JPA e PrimeFaces <a href="http://www.precisioninformatica.com.br/"
+						target="_blank">precisioninformatica</a> </footer>
+               </pe:layoutPane>
+        </pe:layout>
+		<script>
+		 function configurarMoeda(){
+	    	    $(".moeda").maskMoney({decimal:",",thousands:".", allowZero:true});
+			 }
 	
-	<p:separator style="margin-top :20px"/>
-
-	<footer> Curso OnLine de Sistemas Comerciais JavaEE com CDI,
-	JPA e PrimeFaces <a href="http://www.precisioninformatica.com.br/"
-		target="_blank">precisioninformatica</a> </footer>
-
-</h:body>
+		 $(document).ready({
+				     configurarMoeda();
+		           }
+				 );
+		</script>
+    </h:body>
+</f:view>
 </html>
