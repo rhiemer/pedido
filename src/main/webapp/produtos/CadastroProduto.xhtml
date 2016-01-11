@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+
+	<ui:param name="titulo" value="Novo Produto" />
+
+	<ui:define name="corpo">
+		<p:toolbar>
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+				<p:commandButton value="Salvar" id="botaoSalvar" />
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisar" />
+			</p:toolbarGroup>
+		</p:toolbar>
+		<p:panelGrid columns="2" styleClass="painelGridCadastro"
+			columnClasses="rotulo , campo">
+			<p:outputLabel value="SKU" for="sku" />
+			<p:inputText id="sku" size="20" maxlength="20" required="true" />
+
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" size="60" maxlength="60" required="true" />
+
+			<p:outputLabel value="Categoria" for="categoria" />
+			<p:selectOneMenu id="categoria" required="true">
+				<f:selectItem itemLabel="Selecione a categoria" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Subcategoria" for="subcategoria" />
+			<p:selectOneMenu id="subcategoria" required="true">
+				<f:selectItem itemLabel="Selecione a subcategoria" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="Valor Unitário" for="valorUnitario" />
+			<pe:inputNumber id="valorUnitario" size="15" required="true"
+				symbol=" R$" symbolPosition="s" decimalSeparator=","
+				thousandSeparator="." styleClass="inputNumber">
+				<f:convertNumber pattern="###,##0.00" type="currency" />
+				<f:validateDoubleRange minimum="0.01" />
+			</pe:inputNumber>
+
+			<p:outputLabel for="estoque" value="Estoque" />
+			<pe:inputNumber id="estoque" required="true" thousandSeparator="."
+				size="15" decimalPlaces="0">
+				<f:validateDoubleRange minimum="0" />
+			</pe:inputNumber>
+		</p:panelGrid>
+	</ui:define>
+
+</ui:composition>
